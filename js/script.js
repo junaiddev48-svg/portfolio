@@ -507,11 +507,12 @@ async function sendChatMessage(inputId, containerId) {
     if (res.ok && data.reply) {
       addChatMessage(containerId, data.reply, false);
     } else {
-      addChatMessage(containerId, "Sorry, I couldn't process that. Try again later.", false);
+      const errMsg = data.error || "Sorry, I couldn't process that.";
+      addChatMessage(containerId, errMsg, false);
     }
-  } catch {
+  } catch (err) {
     hideTyping(containerId);
-    addChatMessage(containerId, "Couldn't reach the AI. Email me at junaiddev48@gmail.com instead.", false);
+    addChatMessage(containerId, "Couldn't reach the AI. Make sure the site is deployed on Vercel with GEMINI_API_KEY set.", false);
   } finally {
     if (sendBtn) sendBtn.disabled = false;
     input.disabled = false;

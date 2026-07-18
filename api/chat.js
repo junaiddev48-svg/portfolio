@@ -1,7 +1,23 @@
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type',
+};
+
 export default async function handler(req, res) {
+  if (req.method === 'OPTIONS') {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    return res.status(200).end();
+  }
+
   if (req.method !== 'POST') {
+    res.setHeader('Access-Control-Allow-Origin', '*');
     return res.status(405).json({ error: 'Method not allowed' });
   }
+
+  res.setHeader('Access-Control-Allow-Origin', '*');
 
   const { message } = req.body;
   if (!message) {
@@ -10,7 +26,7 @@ export default async function handler(req, res) {
 
   const API_KEY = process.env.GEMINI_API_KEY;
   if (!API_KEY) {
-    return res.status(500).json({ error: 'API key not configured' });
+    return res.status(500).json({ error: 'GEMINI_API_KEY environment variable not set in Vercel' });
   }
 
   const systemPrompt = `You are Ali Junaid's portfolio assistant. Answer questions about Ali based on the following information. Be helpful, friendly, and concise.
@@ -72,14 +88,15 @@ Keep responses under 3 sentences. If asked something not covered here, say you d
     const data = await response.json();
 
     if (!response.ok) {
-      throw new Error(data.error?.message || 'API error');
+      const errMsg = data.error?.message || `HTTP ${response.status}`;
+      throw new Error(errMsg);
     }
 
     const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || 'Sorry, I could not generate a response.';
 
-    res.status(200).json({ reply });
+    return res.status(200).json({ reply });
   } catch (error) {
     console.error('Gemini API error:', error.message);
-    res.status(500).json({ error: 'Failed to get response from AI' });
+    return res.status(500).json({ error: error.message });
   }
 }
