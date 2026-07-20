@@ -429,7 +429,30 @@ animate();
 
 /* ===== AI Chat ===== */
 const API_URL = '/api/chat';
-let chatHistory = {};
+const FALLBACK_QA = [
+  { q: ['skill', 'technology', 'technologies', 'know', 'languages', 'programming', 'stack', 'tools', 'tech', 'expertise', 'good at'],
+    a: 'Ali is proficient in Python, JavaScript, and C++. He works with HTML5, CSS3, Flask, MySQL, and is experienced with Git, GitHub, VS Code, Railway, and Vercel. He is currently learning data analysis tools like Pandas, NumPy, Matplotlib, Seaborn, Jupyter, Excel, IBM Cognos, and SQL through the IBM Data Analyst Professional Certificate.' },
+  { q: ['experience', 'work', 'job', 'intern', 'internship', 'professional', 'career', 'worked'],
+    a: 'Ali worked as a Full-Stack Developer Intern at Subtle Marketing (Apr 2025 - Aug 2025), where he customized and maintained client websites, built a service-based accounting platform, and developed backend APIs with responsive frontend interfaces. He also worked on hifsakhansalon.com.' },
+  { q: ['project', 'build', 'built', 'created', 'developed', 'portfolio'],
+    a: 'Ali has built several projects:\n1. Crop Disease Detection Dashboard — Python, TensorFlow, MobileNetV2, Flask\n2. Smart Home Automation System — Arduino, C++, IoT\n3. Crypto Price Tracker & Prediction Bot — JavaScript, Discord.js, CoinGecko API, Finnhub API\n4. Website Customization for Hifsa Khan Salon' },
+  { q: ['certification', 'certificate', 'course', 'learn', 'ibm', 'google', 'coursera', 'data analyst'],
+    a: 'Ali holds:\n1. Foundations: Data, Data, Everywhere (Google/Coursera)\n2. Ask Questions to Make Data-Driven Decisions (Google/Coursera)\n3. Lead Generation Messenger Chatbot (Coursera)' },
+  { q: ['education', 'degree', 'study', 'studied', 'university', 'college', 'graduate', 'bs', 'computer science', 'academic'],
+    a: 'Ali holds a BS in Computer Science and is currently based in Lahore, Pakistan.' },
+  { q: ['contact', 'email', 'reach', 'hire', 'phone', 'call', 'message', 'get in touch', 'connect'],
+    a: 'You can reach Ali at:\nEmail: junaiddev48@gmail.com\nPhone: +92-335-0400721\nLocation: Lahore, Pakistan\nOr use the contact form on this page!' },
+  { q: ['resume', 'cv', 'cv download', 'download resume', 'download cv'],
+    a: 'You can download Ali\'s resume from the About section — click the "Download CV" button there.' },
+  { q: ['location', 'live', 'where', 'lahore', 'pakistan', 'based'],
+    a: 'Ali is based in Lahore, Pakistan.' },
+  { q: ['language', 'speak', 'urdu', 'english'],
+    a: 'Ali speaks Urdu and English.' },
+  { q: ['hello', 'hi', 'hey', 'assalam', 'salam', 'greetings', 'good morning', 'good afternoon'],
+    a: 'Hello! I am Ali\'s virtual assistant. Feel free to ask me about his skills, experience, projects, certifications, or anything else!' },
+  { q: ['who', 'about', 'yourself', 'tell', 'introduce', 'background', 'introduction', 'bio'],
+    a: 'Ali Junaid is a Full-Stack Developer and Data Analytics learner based in Lahore, Pakistan. He holds a BS in Computer Science and is currently working as a Full-Stack Developer Intern at Subtle Marketing. He is passionate about building web applications and exploring data-driven insights.' }
+];
 
 function addChatMessage(containerId, text, isUser) {
   const container = document.getElementById(containerId);
@@ -479,6 +502,22 @@ function hideTyping(containerId) {
   if (el) el.remove();
 }
 
+function findLocalAnswer(message) {
+  const lower = message.toLowerCase();
+  let best = null, bestCount = 0;
+  for (const entry of FALLBACK_QA) {
+    let count = 0;
+    for (const keyword of entry.q) {
+      if (lower.includes(keyword)) count++;
+    }
+    if (count > bestCount) {
+      bestCount = count;
+      best = entry.a;
+    }
+  }
+  return best;
+}
+
 async function sendChatMessage(inputId, containerId) {
   const input = document.getElementById(inputId);
   const message = input.value.trim();
@@ -497,7 +536,8 @@ async function sendChatMessage(inputId, containerId) {
     const res = await fetch(API_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message })
+      body: JSON.stringify({ message }),
+      signal: AbortSignal.timeout(8000)
     });
 
     const data = await res.json();
@@ -507,12 +547,21 @@ async function sendChatMessage(inputId, containerId) {
     if (res.ok && data.reply) {
       addChatMessage(containerId, data.reply, false);
     } else {
-      const errMsg = data.error || "Sorry, I couldn't process that.";
-      addChatMessage(containerId, errMsg, false);
+      const local = findLocalAnswer(message);
+      if (local) {
+        addChatMessage(containerId, local, false);
+      } else {
+        addChatMessage(containerId, "I don't have that info. Email Ali at junaiddev48@gmail.com.", false);
+      }
     }
-  } catch (err) {
+  } catch {
     hideTyping(containerId);
-    addChatMessage(containerId, "Couldn't reach the AI. Make sure the site is deployed on Vercel with GEMINI_API_KEY set.", false);
+    const local = findLocalAnswer(message);
+    if (local) {
+      addChatMessage(containerId, local, false);
+    } else {
+      addChatMessage(containerId, "I don't have that info. Email Ali at junaiddev48@gmail.com.", false);
+    }
   } finally {
     if (sendBtn) sendBtn.disabled = false;
     input.disabled = false;
