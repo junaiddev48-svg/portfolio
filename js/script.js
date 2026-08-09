@@ -431,11 +431,15 @@ animate();
 const API_URL = '/api/chat';
 const FALLBACK_QA = [
   { q: ['skill', 'technology', 'technologies', 'know', 'languages', 'programming', 'stack', 'tools', 'tech', 'expertise', 'good at'],
-    a: 'Ali is proficient in Python, JavaScript, and C++. He works with HTML5, CSS3, Flask, MySQL, and is experienced with Git, GitHub, VS Code, Railway, and Vercel. He is currently learning data analysis tools like Pandas, NumPy, Matplotlib, Seaborn, Jupyter, Excel, IBM Cognos, and SQL through the IBM Data Analyst Professional Certificate.' },
+    a: 'Ali is proficient in Python, JavaScript, and C++. He works with HTML5, CSS3, Flask, MySQL, and SQL on Supabase, and is experienced with Git, GitHub, VS Code, Railway, and Vercel. He is currently building data science skills in Pandas, NumPy, Matplotlib, Seaborn, Jupyter, Excel, IBM Cognos, and web scraping with BeautifulSoup through the IBM Data Analyst Professional Certificate.' },
+  { q: ['pos', 'point of sale', 'restaurant', 'billing', 'invoice', 'supabase', 'inventory'],
+    a: 'Ali built a complete Restaurant POS System — a full-stack point-of-sale application handling billing, order management, and inventory tracking with a responsive interface, powered by SQL on Supabase. It gives restaurant owners real-time visibility into sales and stock levels.' },
+  { q: ['data science', 'data analyst', 'analytics', 'scraping', 'beautifulsoup', 'beautiful soup', 'pandas', 'numpy', 'data', 'ml', 'machine learning'],
+    a: 'Ali is pursuing the IBM Data Analyst Professional Certificate, building hands-on skills in Python, SQL, NumPy, Pandas, Matplotlib, Seaborn, and web scraping with BeautifulSoup. He is learning to turn raw data into actionable business insights.' },
   { q: ['experience', 'work', 'job', 'intern', 'internship', 'professional', 'career', 'worked'],
     a: 'Ali worked as a Full-Stack Developer Intern at Subtle Marketing (Apr 2025 - Aug 2025), where he customized and maintained client websites, built a service-based accounting platform, and developed backend APIs with responsive frontend interfaces. He also worked on hifsakhansalon.com.' },
   { q: ['project', 'build', 'built', 'created', 'developed', 'portfolio'],
-    a: 'Ali has built several projects:\n1. Crop Disease Detection Dashboard — Python, TensorFlow, MobileNetV2, Flask\n2. Smart Home Automation System — Arduino, C++, IoT\n3. Crypto Price Tracker & Prediction Bot — JavaScript, Discord.js, CoinGecko API, Finnhub API\n4. Website Customization for Hifsa Khan Salon' },
+    a: 'Ali has built several projects:\n1. Restaurant POS System — Python, JavaScript, HTML, SQL (Supabase) — billing, orders, and inventory for restaurants\n2. Crop Disease Detection Dashboard — Python, TensorFlow, MobileNetV2, Flask\n3. Smart Home Automation System — Arduino, C++, IoT\n4. Crypto Price Tracker & Prediction Bot — JavaScript, Discord.js, CoinGecko API, Finnhub API\n5. Website Customization for Hifsa Khan Salon' },
   { q: ['certification', 'certificate', 'course', 'learn', 'ibm', 'google', 'coursera', 'data analyst'],
     a: 'Ali holds:\n1. Foundations: Data, Data, Everywhere (Google/Coursera)\n2. Ask Questions to Make Data-Driven Decisions (Google/Coursera)\n3. Lead Generation Messenger Chatbot (Coursera)' },
   { q: ['education', 'degree', 'study', 'studied', 'university', 'college', 'graduate', 'bs', 'computer science', 'academic'],

@@ -42,9 +42,9 @@ ABOUT ALI:
 SKILLS:
 - Programming: Python, JavaScript, C++
 - Web: HTML5, CSS3, Responsive Design, Flask
-- Databases: MySQL
+- Databases: MySQL, SQL (Supabase)
 - Tools: Git, GitHub, VS Code, Railway, Vercel
-- Learning: Pandas, NumPy, Matplotlib, Seaborn, Jupyter, Excel, IBM Cognos, SQL (IBM Data Analyst Professional)
+- Data Science (Learning): Pandas, NumPy, Matplotlib, Seaborn, BeautifulSoup, Web Scraping, Jupyter, Excel, IBM Cognos, SQL (IBM Data Analyst Professional)
 - Soft Skills: Problem Solving, Team Collaboration, Analytical Thinking, Quick Learner
 
 EXPERIENCE:
@@ -52,10 +52,11 @@ EXPERIENCE:
 2. Academic & Self-Driven Projects (2022 - 2026)
 
 PROJECTS:
-1. Crop Disease Detection Dashboard - Python, TensorFlow, MobileNetV2, Flask
-2. Smart Home Automation System - Arduino, C++, IoT
-3. Crypto Price Tracker & Prediction Bot - JavaScript, Discord.js, CoinGecko API, Finnhub API, Railway, Vercel
-4. Website Customization for Hifsa Khan Salon
+1. Restaurant POS System - Python, JavaScript, HTML, SQL (Supabase): full point-of-sale system with billing, order management, and inventory tracking for restaurants
+2. Crop Disease Detection Dashboard - Python, TensorFlow, MobileNetV2, Flask
+3. Smart Home Automation System - Arduino, C++, IoT
+4. Crypto Price Tracker & Prediction Bot - JavaScript, Discord.js, CoinGecko API, Finnhub API, Railway, Vercel
+5. Website Customization for Hifsa Khan Salon
 
 CERTIFICATIONS:
 1. Foundations: Data, Data, Everywhere (Google/Coursera)
