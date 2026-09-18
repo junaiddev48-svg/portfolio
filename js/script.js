@@ -431,11 +431,11 @@ animate();
 const API_URL = '/api/chat';
 const FALLBACK_QA = [
   { q: ['skill', 'technology', 'technologies', 'know', 'languages', 'programming', 'stack', 'tools', 'tech', 'expertise', 'good at'],
-    a: 'Ali is proficient in Python, JavaScript, and C++. He works with HTML5, CSS3, Flask, MySQL, and SQL on Supabase, and is experienced with Git, GitHub, VS Code, Railway, and Vercel. He is currently building data science skills in Pandas, NumPy, Matplotlib, Seaborn, Jupyter, Excel, IBM Cognos, and web scraping with BeautifulSoup through the IBM Data Analyst Professional Certificate.' },
+    a: 'Ali is proficient in Python, JavaScript, and C++. He works with HTML5, CSS3, Flask, MySQL, and SQL on Supabase, and is experienced with Git, GitHub, VS Code, Railway, and Vercel. He has completed the IBM Data Analyst Professional Certificate, with data skills in Pandas, NumPy, Jupyter, Excel analysis, SQL, and web scraping.' },
   { q: ['pos', 'point of sale', 'restaurant', 'billing', 'invoice', 'supabase', 'inventory'],
     a: 'Ali built a complete Restaurant POS System — a full-stack point-of-sale application handling billing, order management, and inventory tracking with a responsive interface, powered by SQL on Supabase. It gives restaurant owners real-time visibility into sales and stock levels.' },
   { q: ['data science', 'data analyst', 'analytics', 'scraping', 'beautifulsoup', 'beautiful soup', 'pandas', 'numpy', 'data', 'ml', 'machine learning'],
-    a: 'Ali is pursuing the IBM Data Analyst Professional Certificate, building hands-on skills in Python, SQL, NumPy, Pandas, Matplotlib, Seaborn, and web scraping with BeautifulSoup. He is learning to turn raw data into actionable business insights.' },
+    a: 'Ali has completed the IBM Data Analyst Professional Certificate — all 11 courses — with hands-on skills in Python, SQL, NumPy, Pandas, Jupyter, Excel analysis, and web scraping. He turns raw data into actionable business insights.' },
   { q: ['experience', 'work', 'job', 'intern', 'internship', 'professional', 'career', 'worked'],
     a: 'Ali worked as a Full-Stack Developer Intern at Subtle Marketing (Apr 2025 - Aug 2025), where he customized and maintained client websites, built a service-based accounting platform, and developed backend APIs with responsive frontend interfaces. He also worked on hifsakhansalon.com.' },
   { q: ['project', 'build', 'built', 'created', 'developed', 'portfolio'],

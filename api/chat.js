@@ -44,7 +44,7 @@ SKILLS:
 - Web: HTML5, CSS3, Responsive Design, Flask
 - Databases: MySQL, SQL (Supabase)
 - Tools: Git, GitHub, VS Code, Railway, Vercel
-- Data Science (Learning): Pandas, NumPy, Matplotlib, Seaborn, BeautifulSoup, Web Scraping, Jupyter, Excel, IBM Cognos, SQL (IBM Data Analyst Professional)
+- Data & Analytics (IBM Data Analyst Professional Certificate, completed): Pandas, NumPy, Web Scraping, Jupyter, Excel analysis, SQL
 - Soft Skills: Problem Solving, Team Collaboration, Analytical Thinking, Quick Learner
 
 EXPERIENCE:
