@@ -613,3 +613,52 @@ document.querySelectorAll('.suggestion-btn').forEach(btn => {
     sendChatMessage('sectionChatInput', 'sectionChatMessages');
   });
 });
+
+/* ===== Email links: always hand the visitor the address =====
+   mailto: only works if the visitor has a mail app registered.
+   Copy the address to the clipboard as well, so the click is never a dead end. */
+(function () {
+  const toast = document.createElement('div');
+  toast.className = 'copy-toast';
+  toast.setAttribute('role', 'status');
+  toast.setAttribute('aria-live', 'polite');
+  document.body.appendChild(toast);
+
+  let hideTimer;
+  function showToast(message, icon) {
+    toast.innerHTML = '<i class="fas ' + icon + '"></i><span></span>';
+    toast.querySelector('span').textContent = message;
+    toast.classList.add('show');
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(function () { toast.classList.remove('show'); }, 3200);
+  }
+
+  async function copyText(text) {
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+        return true;
+      }
+    } catch (e) { /* fall through */ }
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.top = '-1000px';
+      document.body.appendChild(ta);
+      ta.select();
+      const ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      return ok;
+    } catch (e) { return false; }
+  }
+
+  document.querySelectorAll('a[href^="mailto:"]').forEach(function (link) {
+    link.addEventListener('click', async function () {
+      const address = link.getAttribute('href').replace(/^mailto:/, '').split('?')[0];
+      const ok = await copyText(address);
+      showToast(ok ? address + ' — copied to clipboard' : address, ok ? 'fa-check' : 'fa-envelope');
+    });
+  });
+})();
